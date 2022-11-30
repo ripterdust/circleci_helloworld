@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/ripterdust/circleci_helloworld/issues"
   },
-  "homepage": "https://github.com/ripterdust/circleci_helloworld#readme"
+  "homepage": "https://github.com/ripterdust/circleci_helloworld#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
