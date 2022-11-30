@@ -2,13 +2,12 @@ version: 2.1
 
 orbs:
   node: circleci/node@5.0.2
-  heroku: circleci/heroku@1.2.6
 
 jobs:
   build:
     executor: node/default
 
-    steps: 
+    steps:
       - checkout
       - node/install-packages:
         pkg-manager: npm
@@ -16,5 +15,13 @@ jobs:
         comman: npm start
         name: start server
 
-      
-
+workflows:
+  build:
+    jobs:
+      - run
+      - build:
+        requires:
+          - run
+        filters:
+          branches:
+            only: main
