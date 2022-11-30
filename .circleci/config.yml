@@ -1,25 +1,20 @@
 version: 2.1
 
+orbs:
+  node: circleci/node@5.0.2
+  heroku: circleci/heroku@1.2.6
+
 jobs:
   build:
-    working_directory: ~/circleci_helloworld
-    docker:
-      - image: 'circleci/python:3.6.4'
-    steps:
-      - checkout
-      - run: python3 main.py
-  test:
-    working_directory: ~/circleci_helloworld
-    docker:
-      - image: 'circleci/python:3.6.4'
-    steps:
-      - checkout
-      - run: python3 main-test.py
+    executor: node/default
 
-workflows:
-  build_and_test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
+    steps: 
+      - checkout
+      - node/install-packages:
+        pkg-manager: npm
+      - run:
+        comman: npm start
+        name: start server
+
+      
+
